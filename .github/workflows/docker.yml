@@ -2,7 +2,8 @@ name: Docker CI
 
 on:
   push:
-    branches: [ main ]   # change to master if needed
+    branches:
+      - main   # change to master if your repo uses master
 
 jobs:
   build:
@@ -11,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Docker
-        run: sudo apt-get install -y docker.io
+      - name: Check Docker
+        run: docker --version
 
-      - name: Build
+      - name: Build image
         run: docker build -t my-app .
